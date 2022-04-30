@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "117891025514",
+    "project_id": "salonownerapp",
+    "storage_bucket": "salonownerapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:117891025514:android:c647cd4032ef1f2dcc5813",
+        "android_client_info": {
+          "package_name": "app.saloncare.owner"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "117891025514-5cslee7i1g35b7hc00lk429r4uap07qn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCehAIuKL4m4DGPd8NJqmORSwzKGhn0TA8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "117891025514-5cslee7i1g35b7hc00lk429r4uap07qn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

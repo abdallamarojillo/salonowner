@@ -1,0 +1,278 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar>
+        <ion-buttons slot="start" class="ion-no-margin">
+            <ion-back-button mode="md" icon="chevron-back-sharp" defaultHref="signin"></ion-back-button>
+        </ion-buttons>
+        <ion-title class="ion-text-center">{{'addSalon.title' | translate}}</ion-title>
+        <ion-buttons slot="end">
+            <ion-button fill="clear" mode="md">
+                <ion-icon name="ellipsis-horizontal"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+{{ userid }}
+<ion-content class="ion-padding-horizontal">
+    <div class="profile-image">
+        <img [src]="galleryPreviewImage" alt="" />
+        <div (click)="albumSheet()" class="pluse-icon">
+            <ion-icon name="add-outline"></ion-icon>
+        </div>
+    </div>
+
+    <h3 class="info-title">{{'addSalon.salonDetail' | translate}} {{ owner_id }}</h3>
+    <ion-item>
+        <ion-label position="floating"><span class="required">*</span> {{'addSalon.companyName' | translate}}</ion-label>
+        <ion-input [(ngModel)]="name" type="text"></ion-input>
+    </ion-item>
+    <p class="err">{{nameErr}}</p>
+
+    <ion-item>
+        <ion-label position="floating"><span class="required">*</span> {{'addSalon.phone' | translate}}</ion-label>
+        <ion-input [(ngModel)]="phone" type="text"></ion-input>
+    </ion-item>
+    <p class="err">{{phoneErr}}</p>
+
+    <ion-item>
+        <ion-label position="floating">{{'addSalon.website' | translate}}</ion-label>
+        <ion-input [(ngModel)]="website" type="text"></ion-input>
+    </ion-item>
+    <p class="err">{{websiteErr}}</p>
+
+    <ion-item>
+        <ion-label position="floating"><span class="required">*</span> {{'addSalon.address' | translate}}</ion-label>
+        <ion-textarea [(ngModel)]="address" type="tel"></ion-textarea>
+    </ion-item>
+    <p class="err">{{addressErr}}</p>
+
+    <ion-row>
+        <ion-col size="6" class="ion-no-padding" style="padding-right: 10px">
+            <ion-item>
+                <ion-label position="floating"><span class="required">*</span> {{'addSalon.City' | translate}}</ion-label>
+                <ion-input [(ngModel)]="city" type="text"></ion-input>
+            </ion-item>
+            <p class="err">{{cityErr}}</p>
+        </ion-col>
+        <ion-col size="6" class="ion-no-padding" style="padding-left: 10px">
+            <ion-item>
+                <ion-label position="floating"><span class="required">*</span> {{'addSalon.state' | translate}}</ion-label>
+                <ion-input [(ngModel)]="state" type="text"></ion-input>
+            </ion-item>
+            <p class="err">{{stateErr}}</p>
+        </ion-col>
+    </ion-row>
+
+    <ion-row>
+        <ion-col size="6" class="ion-no-padding" style="padding-right: 10px">
+            <ion-item>
+                <ion-label position="floating"><span class="required">*</span> {{'addSalon.zip' | translate}}</ion-label>
+                <ion-input [(ngModel)]="zipcode" type="text"></ion-input>
+            </ion-item>
+            <p class="err">{{zipcodeErr}}</p>
+        </ion-col>
+        <ion-col size="6" class="ion-no-padding" style="padding-left: 10px">
+            <ion-item>
+                <ion-label position="floating"><span class="required">*</span> {{'addSalon.country' | translate}}</ion-label>
+                <ion-input [(ngModel)]="country" type="text"></ion-input>
+            </ion-item>
+            <p class="err">{{countryErr}}</p>
+        </ion-col>
+    </ion-row>
+
+    <ion-label class="label">{{'addSalon.sunday' | translate}}</ion-label>
+    <ion-row>
+        <ion-col size="5" class="ion-no-padding" style="padding-right: 10px">
+            <ion-item>
+                <ion-label position="floating">{{'addSalon.salonOpenTime' | translate}}</ion-label>
+                <ion-datetime disabled="{{sunCheck.checked == true}}" (ionChange)="check(sunopen)" [(ngModel)]="sunopen" [(ngValue)]="08:00" min="08:00" displayFormat="HH:mm" pickerFormat="HH:mm"></ion-datetime>
+            </ion-item>
+
+        </ion-col>
+        <ion-col size="5" class="ion-no-padding" style="padding-left: 10px">
+            <ion-item>
+                <ion-label position="floating">{{'addSalon.salonClose' | translate}}</ion-label>
+                <ion-datetime disabled="{{sunCheck.checked == true}}" [(ngModel)]="sunclose" (ionChange)="check2(sunclose)" max="20:00" displayFormat="HH:mm" pickerFormat="HH:mm"></ion-datetime>
+            </ion-item>
+        </ion-col>
+        <ion-col size="2">
+            <ion-checkbox [(ngModel)]="sunCheck.checked" checked name="wch" [ngModelOptions]="{standalone: true}"> </ion-checkbox>
+        </ion-col>
+    </ion-row>
+
+    <ion-label class="label">{{'addSalon.monda' | translate}}</ion-label>
+    <ion-row>
+        <ion-col size="5" class="ion-no-padding" style="padding-right: 10px">
+            <ion-item>
+                <ion-label position="floating">{{'addSalon.salonOpenTime' | translate}}</ion-label>
+                <ion-datetime disabled="{{monCheck.checked == true}}" [(ngModel)]="monopen" (ionChange)="check3(monopen)" min="08:00" displayFormat="HH:mm" pickerFormat="HH:mm"></ion-datetime>
+            </ion-item>
+
+        </ion-col>
+        <ion-col size="5" class="ion-no-padding" style="padding-left: 10px">
+            <ion-item>
+                <ion-label position="floating">{{'addSalon.salonClose' | translate}}</ion-label>
+                <ion-datetime disabled="{{monCheck.checked == true}}" [(ngModel)]="monclose" (ionChange)="check4(monclose)" max="20:00" displayFormat="HH:mm" pickerFormat="HH:mm"></ion-datetime>
+            </ion-item>
+        </ion-col>
+        <ion-col size="2">
+            <ion-checkbox [(ngModel)]="monCheck.checked" checked name="wch" [ngModelOptions]="{standalone: true}"> </ion-checkbox>
+        </ion-col>
+    </ion-row>
+
+    <ion-label class="label">{{'addSalon.tuesday' | translate}}</ion-label>
+    <ion-row>
+        <ion-col size="5" class="ion-no-padding" style="padding-right: 10px">
+            <ion-item>
+                <ion-label position="floating">{{'addSalon.salonOpenTime' | translate}}</ion-label>
+                <ion-datetime disabled="{{tueCheck.checked == true}}" [(ngModel)]="tueopen" (ionChange)="check5(tueopen)" min="08:00" displayFormat="HH:mm" pickerFormat="HH:mm"></ion-datetime>
+            </ion-item>
+
+        </ion-col>
+        <ion-col size="5" class="ion-no-padding" style="padding-left: 10px">
+            <ion-item>
+                <ion-label position="floating">{{'addSalon.salonClose' | translate}}</ion-label>
+                <ion-datetime disabled="{{tueCheck.checked == true}}" [(ngModel)]="tueclose" (ionChange)="check6(tueclose)" max="20:00" displayFormat="HH:mm" pickerFormat="HH:mm"></ion-datetime>
+            </ion-item>
+        </ion-col>
+        <ion-col size="2">
+            <ion-checkbox [(ngModel)]="tueCheck.checked" checked name="wch" [ngModelOptions]="{standalone: true}"> </ion-checkbox>
+        </ion-col>
+    </ion-row>
+
+    <ion-label class="label">{{'addSalon.wednesday' | translate}}</ion-label>
+    <ion-row>
+        <ion-col size="5" class="ion-no-padding" style="padding-right: 10px">
+            <ion-item>
+                <ion-label position="floating">{{'addSalon.salonOpenTime' | translate}}</ion-label>
+                <ion-datetime disabled="{{wedCheck.checked == true}}" [(ngModel)]="wedopen" (ionChange)="check7(wedopen)" min="08:00" displayFormat="HH:mm" pickerFormat="HH:mm"></ion-datetime>
+            </ion-item>
+
+        </ion-col>
+        <ion-col size="5" class="ion-no-padding" style="padding-left: 10px">
+            <ion-item>
+                <ion-label position="floating">{{'addSalon.salonClose' | translate}}</ion-label>
+                <ion-datetime disabled="{{wedCheck.checked == true}}" [(ngModel)]="wedclose" (ionChange)="check8(wedclose)" max="20:00" displayFormat="HH:mm" pickerFormat="HH:mm"></ion-datetime>
+            </ion-item>
+        </ion-col>
+        <ion-col size="2">
+            <ion-checkbox [(ngModel)]="wedCheck.checked" checked name="wch" [ngModelOptions]="{standalone: true}"> </ion-checkbox>
+        </ion-col>
+    </ion-row>
+
+    <ion-label class="label">{{'addSalon.thursday' | translate}}</ion-label>
+    <ion-row>
+        <ion-col size="5" class="ion-no-padding" style="padding-right: 10px">
+            <ion-item>
+                <ion-label position="floating">{{'addSalon.salonOpenTime' | translate}}</ion-label>
+                <ion-datetime disabled="{{thuCheck.checked == true}}" [(ngModel)]="thuopen" (ionChange)="check9(thuopen)" min="08:00" displayFormat="HH:mm" pickerFormat="HH:mm"></ion-datetime>
+            </ion-item>
+
+        </ion-col>
+        <ion-col size="5" class="ion-no-padding" style="padding-left: 10px">
+            <ion-item>
+                <ion-label position="floating">{{'addSalon.salonClose' | translate}}</ion-label>
+                <ion-datetime disabled="{{thuCheck.checked == true}}" [(ngModel)]="thuclose" (ionChange)="check10(thuclose)" max="20:00" displayFormat="HH:mm" pickerFormat="HH:mm"></ion-datetime>
+            </ion-item>
+        </ion-col>
+        <ion-col size="2">
+            <ion-checkbox [(ngModel)]="thuCheck.checked" checked name="wch" [ngModelOptions]="{standalone: true}"> </ion-checkbox>
+        </ion-col>
+    </ion-row>
+
+    <ion-label class="label">{{'addSalon.friday' | translate}}</ion-label>
+    <ion-row>
+        <ion-col size="5" class="ion-no-padding" style="padding-right: 10px">
+            <ion-item>
+                <ion-label position="floating">{{'addSalon.salonOpenTime' | translate}}</ion-label>
+                <ion-datetime disabled="{{friCheck.checked == true}}" [(ngModel)]="friopen" (ionChange)="check11(friopen)" min="08:00" displayFormat="HH:mm" pickerFormat="HH:mm"></ion-datetime>
+            </ion-item>
+
+        </ion-col>
+        <ion-col size="5" class="ion-no-padding" style="padding-left: 10px">
+            <ion-item>
+                <ion-label position="floating">{{'addSalon.salonClose' | translate}}</ion-label>
+                <ion-datetime disabled="{{friCheck.checked == true}}" [(ngModel)]="friclose" (ionChange)="check12(friclose)" max="20:00" displayFormat="HH:mm" pickerFormat="HH:mm"></ion-datetime>
+            </ion-item>
+        </ion-col>
+        <ion-col size="2">
+            <ion-checkbox [(ngModel)]="friCheck.checked" checked name="wch" [ngModelOptions]="{standalone: true}"> </ion-checkbox>
+        </ion-col>
+    </ion-row>
+
+    <ion-label class="label">{{'addSalon.saturday' | translate}}</ion-label>
+    <ion-row>
+        <ion-col size="5" class="ion-no-padding" style="padding-right: 10px">
+            <ion-item>
+                <ion-label position="floating">{{'addSalon.salonOpenTime' | translate}}</ion-label>
+                <ion-datetime disabled="{{satCheck.checked == true}}" [(ngModel)]="satopen" (ionChange)="check13(satopen)" min="08:00" displayFormat="HH:mm" pickerFormat="HH:mm"></ion-datetime>
+            </ion-item>
+
+        </ion-col>
+        <ion-col size="5" class="ion-no-padding" style="padding-left: 10px">
+            <ion-item>
+                <ion-label position="floating">{{'addSalon.salonClose' | translate}}</ion-label>
+                <ion-datetime disabled="{{satCheck.checked == true}}" [(ngModel)]="satclose" (ionChange)="check14(satclose)" max="20:00" displayFormat="HH:mm" pickerFormat="HH:mm"></ion-datetime>
+            </ion-item>
+        </ion-col>
+        <ion-col size="2">
+            <ion-checkbox [(ngModel)]="satCheck.checked" checked name="wch" [ngModelOptions]="{standalone: true}"> </ion-checkbox>
+        </ion-col>
+    </ion-row>
+
+    <ion-item>
+        <ion-label position="floating"><span class="required">*</span> {{'addSalon.description' | translate}}</ion-label>
+        <ion-textarea [(ngModel)]="desc" type="tel"></ion-textarea>
+    </ion-item>
+    <p class="err">{{descErr}}</p>
+
+    <ion-item>
+        <ion-label position="floating"><span class="required">*</span> {{'addSalon.giveService' | translate}}</ion-label>
+        <ion-select [(ngModel)]="give_service">
+            <ion-select-option value="Salon">Salon</ion-select-option>
+            <ion-select-option value="Home">Home</ion-select-option>
+            <ion-select-option value="Both">Both</ion-select-option>
+          </ion-select>
+    </ion-item>
+    <p class="err">{{giveserviceErr}}</p>
+
+    <ion-item>
+        <ion-label position="floating"><span class="required">*</span> {{'addSalon.homeCharges' | translate}}</ion-label>
+        <ion-input [(ngModel)]="home_charges" type="number"></ion-input>
+    </ion-item>
+    <p class="err">{{homechargesErr}}</p>
+
+    <ion-item>
+        <ion-label position="floating"><span class="required">*</span> {{'addSalon.gender' | translate}}</ion-label>
+        <ion-select [(ngModel)]="gender">
+            <ion-select-option value="Male">{{'addSalon.male' | translate}}</ion-select-option>
+            <ion-select-option value="Female">{{'addSalon.female' | translate}}</ion-select-option>
+            <ion-select-option value="Both">{{'addSalon.both' | translate}}</ion-select-option>
+          </ion-select>
+    </ion-item>
+    <p class="err">{{genderErr}}</p>
+<!--
+    <ion-radio-group value="Male" (ionChange)="changeGender($event)">
+        <ion-row>
+            <ion-col size="4">
+                <ion-item lines="none">
+                    <ion-radio value="Male"></ion-radio>{{'addSalon.male' | translate}}
+                </ion-item>
+            </ion-col>
+            <ion-col size="4">
+                <ion-item lines="none">
+                    <ion-radio value="Female"></ion-radio>{{'addSalon.female' | translate}}
+                </ion-item>
+            </ion-col>
+            <ion-col size="4">
+                <ion-item lines="none">
+                    <ion-radio value="Both"></ion-radio>{{'addSalon.both' | translate}}
+                </ion-item>
+            </ion-col>
+        </ion-row>
+
+    </ion-radio-group>
+-->
+
+    <ion-button (click)="save()" expand="block" class="ion-no-margin btn-save">{{'addSalon.save' | translate}}</ion-button>
+
+</ion-content>

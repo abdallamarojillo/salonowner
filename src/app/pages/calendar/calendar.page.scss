@@ -1,0 +1,55 @@
+.specialist-title {
+    font-size: 16px;
+    font-family: "mon-bold";
+    margin-top: 26px;
+    .btn-viewAll {
+        font-size: 13px;
+        font-family: "mon-regular";
+        margin-right: 16px;
+        color: var(--ion-color-orange);
+        margin-top: 4px;
+    }
+}
+
+.favorite {
+    color: red;
+}
+
+.employee-row {
+    padding-bottom: 10px;
+    overflow-x: scroll;
+    display: flex;
+    margin-left: 3px;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    .image-div {
+        height: 55px;
+        width: 55px;
+        margin: 0px auto;
+        border-radius: 50%;
+        padding: 3px 2px 2px 2px;
+        &.active {
+            border: 1.5px solid var(--ion-color-orange);
+        }
+        img {
+            height: 100%;
+            width: 100%;
+            border-radius: 50%;
+        }
+    }
+    .active {
+        border-color: var(--ion-color-orange);
+    }
+    .emp-name {
+        font-size: 12px;
+        font-family: "mon-regular";
+        margin-bottom: 2px;
+    }
+    .emp-deg {
+        font-size: 11px;
+        font-family: "mon-bold";
+        color: var(--ion-color-lightGray);
+        margin: 0px;
+    }
+}

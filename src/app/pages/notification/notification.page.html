@@ -1,0 +1,17 @@
+<ion-header class="ion-no-border primary-header">
+    <ion-toolbar>
+        <ion-title class="ion-text-center animated fadeIn">Notifications</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+    <ion-item *ngFor="let item of notifications">
+        <ion-thumbnail slot="start">
+            <img src="{{item?.imagePath+item?.salonImage}}">
+        </ion-thumbnail>
+        <ion-label>
+            <h3>{{item?.title}}</h3>
+            <p>{{item?.msg}}</p>
+        </ion-label>
+    </ion-item>
+</ion-content>

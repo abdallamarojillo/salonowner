@@ -1,0 +1,42 @@
+<ion-header class="ion-no-border primary-header">
+    <ion-toolbar>
+        <ion-title (click)="presentCalendarPicker()" class="ion-text-center">
+            {{viewTitle}}
+            <ion-icon style="position: relative; top: 3px;" name="caret-down-outline"></ion-icon>
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-refresher slot="fixed" (ionRefresh)="getStaff($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
+    <h4 class="specialist-title ion-margin-start">
+        {{'calendar.salonSpecia' | translate}}
+
+    </h4>
+    <div class="ion-no-padding employee-row">
+        <div *ngFor="let emp of staff" style="margin-left: 16px;">
+            <div class="image-div" (click)="employee(emp)" [class.active]="emp.emp_id == id ? 'selectedEmp' : ''">
+                <ngx-progressive-img-loader [height]="'100%'" [width]="'100%'" [placeholderBgColor]="'#ccc'" [placeholderImg]="'https://vignette.wikia.nocookie.net/the-darkest-minds/images/4/47/Placeholder.png/revision/latest/scale-to-width-down/240?cb=20160927044640'"
+                    [preserveAspectRatio]="true" [img]="emp.imagePath+emp.image" [thumbnail]="'https://picsum.photos/200/200?image='" [fallbackImg]="'https://skirtingboardsdirect.com/wp-content/uploads/2014/12/Fallback-Image-600x600.png'">
+                </ngx-progressive-img-loader>
+            </div>
+            <p class="emp-name ion-text-center">
+                {{ emp.name | slice:0:7}}
+            </p>
+            <p class="emp-deg ion-text-center">{{ emp.phone }}</p>
+        </div>
+    </div>
+    <calendar [eventSource]="calendar.eventSource" [calendarMode]="calendar.mode" [currentDate]="calendar.currentDate" (onCurrentDateChanged)="onCurrentDateChanged($event)" (onEventSelected)="onEventSelected($event)" (onTitleChanged)="onViewTitleChanged($event)"
+        (onTimeSelected)="onTimeSelected($event)" step="30">
+    </calendar>
+
+    <ion-fab class="animated slideInUp" horizontal="end" vertical="bottom" slot="fixed" mode="ios">
+        <ion-fab-button routerDirection="forward" routerLink="/selectServices">
+            <ion-icon name="calendar-outline"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+
+</ion-content>

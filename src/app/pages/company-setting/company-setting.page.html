@@ -1,0 +1,262 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar>
+        <ion-buttons slot="start" class="ion-no-margin">
+            <ion-back-button mode="md" icon="chevron-back-sharp" defaultHref="tabs/more"></ion-back-button>
+        </ion-buttons>
+        <ion-title class="ion-text-center">{{'comapnySetting.profile' | translate}}</ion-title>
+        <ion-buttons slot="end">
+            <ion-button fill="clear" mode="md">
+                <ion-icon name="ellipsis-horizontal"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding-horizontal">
+    <form [formGroup]="myForm">
+        <div class="profile-image">
+            <img [src]="imagePreview" alt="" />
+            <div (click)="albumSheet()" class="pluse-icon">
+                <ion-icon name="add-outline"></ion-icon>
+            </div>
+        </div>
+
+        <h3 class="info-title">{{'comapnySetting.detail' | translate}}</h3>
+        <ion-item>
+            <ion-label position="floating">{{'comapnySetting.companyName' | translate}}</ion-label>
+            <ion-input formControlName="name" name="name" type="text"></ion-input>
+        </ion-item>
+        <p class="err-msg" *ngIf="myForm.controls.name.hasError('required') && myForm.controls.name.touched" color="danger">
+            {{'comapnySetting.companyRe' | translate}}
+        </p>
+
+        <ion-item>
+            <ion-label position="floating">{{'comapnySetting.phon' | translate}}</ion-label>
+            <ion-input formControlName="phone" name="phone" type="text"></ion-input>
+        </ion-item>
+        <p class="err-msg" *ngIf="myForm.controls.phone.hasError('required') && myForm.controls.phone.touched" color="danger">
+            {{'comapnySetting.phoneRequired' | translate}}
+        </p>
+
+        <ion-item>
+            <ion-label position="floating">{{'comapnySetting.website' | translate}}</ion-label>
+            <ion-input formControlName="website" name="website" type="text"></ion-input>
+        </ion-item>
+        <p class="err-msg" *ngIf="myForm.controls.website.hasError('required') && myForm.controls.website.touched" color="danger">
+            {{'comapnySetting.webRe' | translate}}
+        </p>
+
+        <ion-item>
+            <ion-label position="floating">{{'comapnySetting.addre' | translate}}</ion-label>
+            <ion-textarea formControlName="address" name="phone" type="tel"></ion-textarea>
+        </ion-item>
+        <p class="err-msg" *ngIf="myForm.controls.address.hasError('required') && myForm.controls.address.touched" color="danger">
+            {{'comapnySetting.addressRe' | translate}}
+        </p>
+        <ion-row>
+            <ion-col size="6" class="ion-no-padding" style="padding-right: 10px">
+                <ion-item>
+                    <ion-label position="floating">{{'comapnySetting.city' | translate}}</ion-label>
+                    <ion-input formControlName="city" name="city" type="text"></ion-input>
+                </ion-item>
+                <p class="err-msg" *ngIf="myForm.controls.city.hasError('required') && myForm.controls.city.touched" color="danger">
+                    {{'comapnySetting.cityEr' | translate}}
+                </p>
+            </ion-col>
+            <ion-col size="6" class="ion-no-padding" style="padding-left: 10px">
+                <ion-item>
+                    <ion-label position="floating">{{'comapnySetting.stat' | translate}}</ion-label>
+                    <ion-input formControlName="state" name="state" type="text"></ion-input>
+                </ion-item>
+                <p class="err-msg" *ngIf="myForm.controls.state.hasError('required') && myForm.controls.state.touched" color="danger">
+                    {{'comapnySetting.stateEr' | translate}}
+                </p>
+            </ion-col>
+        </ion-row>
+        <ion-item>
+            <ion-label position="floating">{{'comapnySetting.zipCode' | translate}}</ion-label>
+            <ion-input formControlName="zipcode" name="zipcode" type="tel"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">{{'comapnySetting.country' | translate}}</ion-label>
+            <ion-input [(ngModel)]="country" [ngModelOptions]="{standalone: true}" value="{{data?.country}}" name="country" type="tel"></ion-input>
+        </ion-item>
+        <div>
+            <ion-label class="label">{{'comapnySetting.sunday' | translate}}</ion-label>
+            <ion-row>
+                <ion-col size="5" class="ion-no-padding" style="padding-right: 10px">
+                    <ion-item>
+                        <ion-label position="floating">{{'companySetting.salonOpen' | translate }} </ion-label>
+                        <ion-datetime disabled="{{sunCheck.checked == true}}" min="08:00" value="{{data?.sunday?.open}}" formControlName="sunopen" displayFormat="HH:mm" pickerFormat="HH:mm"></ion-datetime>
+                    </ion-item>
+
+                </ion-col>
+                <ion-col size="5" class="ion-no-padding" style="padding-left: 10px">
+                    <ion-item>
+                        <ion-label position="floating">{{'companySetting.salonClo' | translate }} </ion-label>
+                        <ion-datetime disabled="{{sunCheck.checked == true}}" max="20:00" value="{{data?.sunday?.close}}" formControlName="sunclose" displayFormat="HH:mm" pickerFormat="HH:mm"></ion-datetime>
+                    </ion-item>
+
+                </ion-col>
+                <ion-col size="2">
+                    <ion-checkbox [(ngModel)]="sunCheck.checked" [checked]="data?.sunCheck == true" name="wch" [ngModelOptions]="{standalone: true}"> </ion-checkbox>
+                </ion-col>
+            </ion-row>
+        </div>
+        <ion-label class="label">{{'comapnySetting.monday' | translate}}</ion-label>
+        <ion-row>
+            <ion-col size="5" class="ion-no-padding" style="padding-right: 10px">
+                <ion-item>
+                    <ion-label position="floating">{{'companySetting.salonOpen' | translate }} </ion-label>
+                    <ion-datetime disabled="{{monCheck.checked == true}}" value="{{data?.monday?.open}}" formControlName="monopen" displayFormat="HH:mm" pickerFormat="HH:mm"></ion-datetime>
+                </ion-item>
+
+            </ion-col>
+            <ion-col size="5" class="ion-no-padding" style="padding-left: 10px">
+                <ion-item>
+                    <ion-label position="floating">{{'companySetting.salonClo' | translate }} </ion-label>
+                    <ion-datetime disabled="{{monCheck.checked == true}}" value="{{data?.monday?.close}}" formControlName="monclose" displayFormat="hh:mm" pickerFormat="hh:mm"></ion-datetime>
+                </ion-item>
+
+            </ion-col>
+            <ion-col size="2">
+                <ion-checkbox [(ngModel)]="monCheck.checked" name="wch" [checked]="data?.monCheck == true" [ngModelOptions]="{standalone: true}"> </ion-checkbox>
+            </ion-col>
+        </ion-row>
+
+        <ion-label class="label">{{'comapnySetting.tusda' | translate}}</ion-label>
+        <ion-row>
+            <ion-col size="5" class="ion-no-padding" style="padding-right: 10px">
+                <ion-item>
+                    <ion-label position="floating">{{'companySetting.salonOpen' | translate }} </ion-label>
+                    <ion-datetime disabled="{{tueCheck.checked == true}}" value="{{data?.tuesday?.open}}" formControlName="tueopen" displayFormat="hh:mm" pickerFormat="hh:mm"></ion-datetime>
+                </ion-item>
+
+            </ion-col>
+            <ion-col size="5" class="ion-no-padding" style="padding-left: 10px">
+                <ion-item>
+                    <ion-label position="floating">{{'companySetting.salonClo' | translate }} </ion-label>
+                    <ion-datetime disabled="{{tueCheck.checked == true}}" value="{{data?.tuesday?.close}}" formControlName="tueclose" displayFormat="hh:mm" pickerFormat="hh:mm"></ion-datetime>
+                </ion-item>
+
+            </ion-col>
+            <ion-col size="2">
+                <ion-checkbox [(ngModel)]="tueCheck.checked" name="wch" [checked]="data?.tueCheck == true" [ngModelOptions]="{standalone: true}"> </ion-checkbox>
+            </ion-col>
+        </ion-row>
+
+        <ion-label class="label">{{'comapnySetting.wednes' | translate}}</ion-label>
+        <ion-row>
+            <ion-col size="5" class="ion-no-padding" style="padding-right: 10px">
+                <ion-item>
+                    <ion-label position="floating">{{'companySetting.salonOpen' | translate }} </ion-label>
+                    <ion-datetime disabled="{{wedCheck.checked == true}}" value="{{data?.wednesday?.open}}" formControlName="wedopen" displayFormat="hh:mm" pickerFormat="hh:mm"></ion-datetime>
+                </ion-item>
+
+            </ion-col>
+            <ion-col size="5" class="ion-no-padding" style="padding-left: 10px">
+                <ion-item>
+                    <ion-label position="floating">{{'companySetting.salonClo' | translate }} </ion-label>
+                    <ion-datetime disabled="{{wedCheck.checked == true}}" value="{{data?.wednesday?.close}}" formControlName="wedclose" displayFormat="hh:mm" pickerFormat="hh:mm"></ion-datetime>
+                </ion-item>
+
+            </ion-col>
+            <ion-col size="2">
+                <ion-checkbox [(ngModel)]="wedCheck.checked" [checked]="data?.wedCheck == true" name="wch" [ngModelOptions]="{standalone: true}"> </ion-checkbox>
+            </ion-col>
+        </ion-row>
+
+        <ion-label class="label">{{'comapnySetting.thursday' | translate}}</ion-label>
+        <ion-row>
+            <ion-col size="5" class="ion-no-padding" style="padding-right: 10px">
+                <ion-item>
+                    <ion-label position="floating">{{'companySetting.salonOpen' | translate }} </ion-label>
+                    <ion-datetime disabled="{{thuCheck.checked == true}}" value="{{data?.thursday?.open}}" formControlName="thuopen" displayFormat="hh:mm" pickerFormat="hh:mm"></ion-datetime>
+                </ion-item>
+
+            </ion-col>
+            <ion-col size="5" class="ion-no-padding" style="padding-left: 10px">
+                <ion-item>
+                    <ion-label position="floating">{{'companySetting.salonClo' | translate }} </ion-label>
+                    <ion-datetime disabled="{{thuCheck.checked == true}}" value="{{data?.thursday?.close}}" formControlName="thuclose" displayFormat="hh:mm" pickerFormat="hh:mm"></ion-datetime>
+                </ion-item>
+
+            </ion-col>
+            <ion-col size="2">
+                <ion-checkbox [(ngModel)]="thuCheck.checked" [checked]="data?.thuCheck == true" name="wch" [ngModelOptions]="{standalone: true}"> </ion-checkbox>
+            </ion-col>
+        </ion-row>
+
+        <ion-label class="label">{{'comapnySetting.frida' | translate}}</ion-label>
+        <ion-row>
+            <ion-col size="5" class="ion-no-padding" style="padding-right: 10px">
+                <ion-item>
+                    <ion-label position="floating">{{'companySetting.salonOpen' | translate }} </ion-label>
+                    <ion-datetime disabled="{{friCheck.checked == true}}" value="{{data?.friday?.open}}" minuteValues="0,30,60 " formControlName="friopen" displayFormat="hh:mm" pickerFormat="hh:mm"></ion-datetime>
+                </ion-item>
+
+            </ion-col>
+            <ion-col size="5 " class="ion-no-padding " style="padding-left: 10px ">
+                <ion-item>
+                    <ion-label position="floating ">{{'companySetting.salonClo' | translate }} </ion-label>
+                    <ion-datetime disabled="{{friCheck.checked==true}}" value="{{data?.friday?.close}}" minuteValues="0,30,60 " formControlName="friclose" displayFormat="hh:mm" pickerFormat="hh:mm"></ion-datetime>
+                </ion-item>
+
+            </ion-col>
+            <ion-col size="2 ">
+                <ion-checkbox [(ngModel)]="friCheck.checked" [checked]="data?.friCheck == true" name="wch" [ngModelOptions]="{standalone: true} "> </ion-checkbox>
+            </ion-col>
+        </ion-row>
+
+        <ion-label class="label ">{{'comapnySetting.sat' | translate}}</ion-label>
+        <ion-row>
+            <ion-col size="5 " class="ion-no-padding" style="padding-right: 10px">
+                <ion-item>
+                    <ion-label position="floating ">{{'companySetting.salonOpen' | translate }} </ion-label>
+                    <ion-datetime disabled="{{satCheck.checked==true}}" value="{{data?.saturday?.open}}" minuteValues="0,30,60 " formControlName="satopen" displayFormat="hh:mm" pickerFormat="hh:mm"></ion-datetime>
+                </ion-item>
+
+            </ion-col>
+            <ion-col size="5" class="ion-no-padding" style="padding-left: 10px ">
+                <ion-item>
+                    <ion-label position="floating">{{'companySetting.salonClo' | translate }} </ion-label>
+                    <ion-datetime disabled="{{satCheck.checked==true}}" value="{{data?.saturday?.close}}" minuteValues="0,30,60 " formControlName="satclose" displayFormat="hh:mm " pickerFormat="hh:mm"></ion-datetime>
+                </ion-item>
+
+            </ion-col>
+            <ion-col size="2 ">
+                <ion-checkbox [(ngModel)]="satCheck.checked" [checked]="data?.satCheck == true" name="wch " [ngModelOptions]="{standalone: true} "> </ion-checkbox>
+            </ion-col>
+        </ion-row>
+
+        <ion-item>
+            <ion-label position="floating">{{'comapnySetting.desc'| translate}}</ion-label>
+            <ion-textarea [(ngModel)]="desc" [ngModelOptions]="{standalone: true} " value="{{data?.desc}}" name="desc" type="tel"></ion-textarea>
+        </ion-item>
+        <ion-radio-group value="{{data?.gender}}" (ionChange)="changeGender($event)">
+            <ion-row>
+                <ion-col size="4">
+                    <ion-item lines="none">
+                        <ion-radio value="Male"></ion-radio>{{'comapnySetting.mal' | translate}}
+                    </ion-item>
+                </ion-col>
+                <ion-col size="4">
+
+                    <ion-item lines="none">
+                        <ion-radio value="Memale"></ion-radio>{{'comapnySetting.fema' | translate}}
+                    </ion-item>
+                </ion-col>
+                <ion-col size="4">
+                    <ion-item lines="none">
+                        <ion-radio value="Both"></ion-radio>{{'comapnySetting.bth' | translate}}
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+
+        </ion-radio-group>
+
+        <ion-button (click)="editCompanyProfile() " expand="block " class="ion-no-margin btn-save ">
+            {{'comapnySetting.sav' | translate}}
+        </ion-button>
+    </form>
+</ion-content>

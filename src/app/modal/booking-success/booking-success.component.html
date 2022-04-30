@@ -1,0 +1,14 @@
+<ion-content>
+    <div class="lock_circle">
+        <ion-icon name="checkmark-outline"></ion-icon>
+    </div>
+    <h3 class="title ion-text-center">Your appointment booking <br> is successfully.</h3>
+    <p class="description ion-text-center">You can view the appointment booking info <br> in the
+        <span>“Appointment”</span> section.</p>
+    <ion-button (click)="navigateTo('tabs/calendar')" class="btn-done ion-text-capitalize" mode="md" expand="full" shape="round" fill="solid">
+        Go to Calender
+    </ion-button>
+    <ion-button (click)="navigateTo('/appointments')" class="btn-go" mode="md" size="small" expand="block" fill="clear">
+        Go to appointments
+    </ion-button>
+</ion-content>

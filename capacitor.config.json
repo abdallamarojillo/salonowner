@@ -1,0 +1,28 @@
+{
+  "appId": "com.example.app",
+  "appName": "salon-admin",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "cordova": {
+    "preferences": {
+      "ScrollEnabled": "false",
+      "loadUrlTimeoutValue": "700000",
+      "android-minSdkVersion": "19",
+      "BackupWebStorage": "none",
+      "ShowSplashScreenSpinner": "false",
+      "SplashMaintainAspectRatio": "true",
+      "SplashReloadOnOrientationChange": "true",
+      "AutoHideSplashScreen": "false",
+      "FadeSplashScreen": "true",
+      "SplashShowOnlyFirstTime": "false",
+      "SplashScreen": "screen",
+      "SplashScreenDelay": "3000"
+    }
+  }
+}

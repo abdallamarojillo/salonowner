@@ -1,0 +1,69 @@
+<ion-header [class.border]="state===2" class="ion-no-border">
+    <ion-toolbar>
+        <ion-title *ngIf="state===1"></ion-title>
+        <ion-title *ngIf="state===2" class="ion-text-center animated fadeIn">{{'addClient.client' | translate}}</ion-title>
+        <ion-buttons slot="end" class="ion-no-margin">
+            <ion-button mode="md" class="btn-close">
+                <ion-back-button defaultHref="services" icon="close-outline" text=""></ion-back-button>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [scrollEvents]="true" (ionScroll)="logScrolling($event)" class="ion-padding-horizontal">
+    <h3 class="title">{{'addClient.client' | translate}}</h3>
+    <form [formGroup]="userForm">
+        <ion-item>
+            <ion-label position="floating">{{'addClient.name' | translate}}</ion-label>
+            <ion-input formControlName="name" name="name" type="text"></ion-input>
+        </ion-item>
+        <p class="err-msg" *ngIf="userForm.controls.name.hasError('required') && userForm.controls.name.touched" color="danger">
+            {{'addClient.nameRequired' | translate}}
+        </p>
+        <p class="err-msg" *ngIf="err?.name">
+            {{err?.name}}
+        </p>
+
+        <ion-item>
+            <ion-label position="floating">{{'addClient.email' | translate}}</ion-label>
+            <ion-input formControlName="email" name="email" type="text"></ion-input>
+        </ion-item>
+        <p class="err-msg" *ngIf="userForm.controls.email.hasError('required') && userForm.controls.email.touched" color="danger">
+            {{'addClient.emailErr' | translate}}
+        </p>
+        <p class="err-msg" *ngIf="userForm.controls.email.hasError('email') && userForm.controls.email.touched" color="danger">
+            {{'addClient.invalidEmail' | translate}}
+        </p>
+        <p class="err-msg" *ngIf="err?.email">
+            {{err?.email}}
+        </p>
+
+        <ion-item>
+            <ion-label position="floating">{{'addClient.phone' | translate}}</ion-label>
+            <ion-input formControlName="phone" name="phone" type="text"></ion-input>
+        </ion-item>
+        <p class="err-msg" *ngIf="userForm.controls.phone.hasError('required') && userForm.controls.phone.touched" color="danger">
+            {{'addClient.phoneErr' | translate}}
+        </p>
+        <p class="err-msg" *ngIf="err?.phone">
+            {{err?.phone}}
+        </p>
+
+        <ion-item>
+            <ion-label position="floating">{{'addClient.password' | translate}}</ion-label>
+            <ion-input formControlName="password" name="password" type="text"></ion-input>
+        </ion-item>
+        <p class="err-msg" *ngIf="userForm.controls.password.hasError('required') && userForm.controls.password.touched" color="danger">
+            {{'addClient.requiredPaa' | translate}}
+        </p>
+        <p class="err-msg" *ngIf="userForm.controls.password.hasError('minlength') && userForm.controls.password.touched" color="danger">
+            {{'addClient.passGreaterTHan' | translate}}
+        </p>
+    </form>
+</ion-content>
+
+<ion-footer>
+    <ion-button (click)="onSave()" [disabled]="!userForm.valid" expand="block" class="btn-save">
+        {{'addClient.save' | translate}}
+    </ion-button>
+</ion-footer>

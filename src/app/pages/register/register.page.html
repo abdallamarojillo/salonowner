@@ -1,0 +1,20 @@
+<ion-content>
+    <div class="content-section">
+        <h1 class="ion-text-center title">{{'register.label' | translate}}</h1>
+        <p class="ion-text-center">{{'register.signUp' | translate}}</p>
+        <ion-input class="email-input" [(ngModel)]="name" name="name" placeholder="Name" type="text"></ion-input>
+        <p class="err">{{nameErr}}</p>
+        <ion-input class="email-input" [(ngModel)]="email" name="email" placeholder="Email" type="email"></ion-input>
+        <p class="err">{{emailErr}}</p>
+        <ion-input class="email-input" [(ngModel)]="password" name="password" placeholder="Password" type="password"></ion-input>
+        <p class="err">{{passErr}}</p>
+        <ion-input class="email-input" [(ngModel)]="confirm_password" name="confirm" placeholder="Confirm Password" type="password"></ion-input>
+        <p class="err">{{ConfPassErr}}</p>
+        <ion-input class="email-input" [(ngModel)]="phone" name="phonw" placeholder="Phone" type="text"></ion-input>
+        <p class="err">{{phoneErr}}</p>
+
+        <ion-button class="btn-login ion-text-capitalize" mode="md" expand="full" shape="round" fill="solid" (click)="signIn()">
+            {{'register.button' | translate}}
+        </ion-button>
+    </div>
+</ion-content>
